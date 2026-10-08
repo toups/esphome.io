@@ -654,14 +654,20 @@ This [action](/automations/actions#all-actions) sends a Panasonic infrared remot
 ```yaml
 on_...:
   - remote_transmitter.transmit_panasonic:
-      address: 0x1FEF
-      command: 0x1F3E065F
+      nbits: 56
+      address: 0x4004
+      address2: 0x01
+      command: 0x1200BCAF
+      carrier_frequency: 37kHz
 ```
 
 #### Configuration variables
 
-- **address** (**Required**, int, [templatable](/automations/templates)): The address to send the command to, see dumper output for more details.
-- **command** (**Required**, int, [templatable](/automations/templates)): The command to send.
+- **nbits** (*Optional*, uint16_t, [templatable](/automations/templates)): Default is 48, valid values are 48 and 56.
+- **address** (**Required**, uint16_t, [templatable](/automations/templates)): The address to send the command to, see dumper output for more details.
+- **address2** (*Optional*, uint8_t, [templatable](/automations/templates)): Additional field used by 56 bit codes.
+- **command** (**Required**, uint32_t, [templatable](/automations/templates)): The command to send.
+- **carrier_frequency** (*Optional*, uint32_t, [templatable](/automations/templates)): Default is 35kHz, 37kHz is a common Pansonic value.
 - All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
 
 <span id="remote_transmitter-transmit_pioneer"></span>
